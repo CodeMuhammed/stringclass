@@ -10,3 +10,15 @@ Object.defineProperty(String.prototype, 'hasVowels', {
     return /[aeiou]/.test(this.toString());
   },
 });
+
+/**
+ * String.prototype.toUpper
+ * This methods takes in a string and returns the uppercase version of it.
+ * @return {String}.
+ */
+Object.defineProperty(String.prototype, 'toUpper', {
+  value() {
+    return this.toString().replace(/[a-z]/gi, c => String.fromCharCode(32 ^ c.charCodeAt(0)));
+  },
+});
+
