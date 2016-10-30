@@ -22,3 +22,14 @@ Object.defineProperty(String.prototype, 'toUpper', {
   },
 });
 
+/**
+ * String.prototype.toLower
+ * This methods takes in a string and returns the uppercase version of it.
+ * @return {String}.
+ */
+Object.defineProperty(String.prototype, 'toLower', {
+  value() {
+    return this.toString().replace(/[A-Z]/g, c => String.fromCharCode(c.charCodeAt(0) + 32));
+  },
+});
+
