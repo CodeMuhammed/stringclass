@@ -7,7 +7,6 @@
  */
 Object.defineProperty(String.prototype, 'hasVowels', {
   value() {
-    console.log('Has vowel function called');
     return /[aeiou]/.test(this.toString());
   },
 });
