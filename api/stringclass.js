@@ -18,7 +18,7 @@ Object.defineProperty(String.prototype, 'hasVowels', {
  */
 Object.defineProperty(String.prototype, 'toUpper', {
   value() {
-    return this.toString().replace(/[a-z]/gi, c => String.fromCharCode(32 ^ c.charCodeAt(0)));
+    return this.toString().replace(/[a-z]/g, c => String.fromCharCode(c.charCodeAt(0)) - 32);
   },
 });
 
