@@ -5,10 +5,10 @@ const assert = require('chai').assert;
 const testData = {
   empty: '',
   numbers: '12345',
-  alphaNumeric: '123abc',
-  alpha: 'abcdef',
-  stringWithSpace: ' hell o ',
-  stringWithSymbol: 'hello£$',
+  alphaNumeric: '123aBc',
+  alpha: 'abCDef',
+  stringWithSpace: ' heLL o ',
+  stringWithSymbol: 'hELlo£$',
 };
 
 // Switch to TDD lingo.
@@ -64,3 +64,24 @@ suite('toUpper', () => {
   });
 });
 
+//
+suite('toLower', () => {
+  test('An empty string', () => {
+    assert.equal(testData.empty.toLower(), '');
+  });
+  test('numbers', () => {
+    assert.equal(testData.numbers.toLower(), '12345');
+  });
+  test('Alpha-numeric string', () => {
+    assert.equal(testData.alphaNumeric.toLower(), '123abc');
+  });
+  test('Alphabets only string', () => {
+    assert.equal(testData.alpha.toLower(), 'abcdef');
+  });
+  test('Alphabets with spaces', () => {
+    assert.equal(testData.stringWithSpace.toLower(), ' hell o ');
+  });
+  test('Alphabets with symbols', () => {
+    assert.equal(testData.stringWithSymbol.toLower(), 'hello£$');
+  });
+});
