@@ -9,6 +9,7 @@ const testData = {
   alpha: 'abCDef',
   stringWithSpace: ' heLL o ',
   stringWithSymbol: 'hELlo£$',
+  question: 'hello ?',
 };
 
 // Switch to TDD lingo.
@@ -107,3 +108,15 @@ suite('ucFirst', () => {
     assert.equal(testData.stringWithSymbol.ucFirst(), 'HELlo£$');
   });
 });
+
+
+//
+suite('isQuestion', () => {
+  test('An empty string', () => {
+    assert.equal(testData.empty.ucFirst(), '');
+  });
+  test('question', () => {
+    assert.equal(testData.question.ucFirst(), true);
+  });
+});
+
