@@ -40,8 +40,17 @@ Object.defineProperty(String.prototype, 'toLower', {
  */
 Object.defineProperty(String.prototype, 'ucFirst', {
   value() {
-    return (this.toString()[0]) ? this.toString().charAt(0).toUpperCase() + this.toString().substr(1) : '';
+    return this.toString().replace(/^\S/, char => char.toUpper());
   },
 });
 
-
+/**
+ * String.prototype.isQuestion
+ * This methods return true if the string is a question (ending with a question mark).
+ * @return {boolean}.
+ */
+Object.defineProperty(String.prototype, 'isQuestion', {
+  value() {
+    return /\?$/.test(this.toString());
+  },
+});

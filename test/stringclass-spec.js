@@ -113,10 +113,10 @@ suite('ucFirst', () => {
 //
 suite('isQuestion', () => {
   test('An empty string', () => {
-    assert.equal(testData.empty.ucFirst(), '');
+    assert.equal(testData.empty.isQuestion(), '');
   });
   test('question', () => {
-    assert.equal(testData.question.ucFirst(), true);
+    assert.equal(testData.question.isQuestion(), true);
   });
 });
 
