@@ -85,3 +85,25 @@ suite('toLower', () => {
     assert.equal(testData.stringWithSymbol.toLower(), 'hello£$');
   });
 });
+
+//
+suite('ucFirst', () => {
+  test('An empty string', () => {
+    assert.equal(testData.empty.ucFirst(), '');
+  });
+  test('numbers', () => {
+    assert.equal(testData.numbers.ucFirst(), '12345');
+  });
+  test('Alpha-numeric string', () => {
+    assert.equal(testData.alphaNumeric.ucFirst(), '123abc');
+  });
+  test('Alphabets only string', () => {
+    assert.equal(testData.alpha.ucFirst(), 'Abcdef');
+  });
+  test('Alphabets with spaces', () => {
+    assert.equal(testData.stringWithSpace.ucFirst(), ' hell o ');
+  });
+  test('Alphabets with symbols', () => {
+    assert.equal(testData.stringWithSymbol.ucFirst(), 'Hello£$');
+  });
+});
