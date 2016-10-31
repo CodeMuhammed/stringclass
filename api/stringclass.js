@@ -33,5 +33,15 @@ Object.defineProperty(String.prototype, 'toLower', {
   },
 });
 
+/**
+ * String.prototype.ucFirst
+ * This methods returns the string in question but changes the First Character to an Upper case
+ * @return {String}.
+ */
+Object.defineProperty(String.prototype, 'ucFirst', {
+  value() {
+    return (this.toString()[0]) ? this.toString().charAt(0).toUpperCase() + this.toString().substr(1) : '';
+  },
+});
 
 

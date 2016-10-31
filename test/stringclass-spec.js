@@ -95,15 +95,15 @@ suite('ucFirst', () => {
     assert.equal(testData.numbers.ucFirst(), '12345');
   });
   test('Alpha-numeric string', () => {
-    assert.equal(testData.alphaNumeric.ucFirst(), '123abc');
+    assert.equal(testData.alphaNumeric.ucFirst(), '123aBc');
   });
   test('Alphabets only string', () => {
-    assert.equal(testData.alpha.ucFirst(), 'Abcdef');
+    assert.equal(testData.alpha.ucFirst(), 'AbCDef');
   });
   test('Alphabets with spaces', () => {
-    assert.equal(testData.stringWithSpace.ucFirst(), ' hell o ');
+    assert.equal(testData.stringWithSpace.ucFirst(), ' heLL o ');
   });
   test('Alphabets with symbols', () => {
-    assert.equal(testData.stringWithSymbol.ucFirst(), 'Hello£$');
+    assert.equal(testData.stringWithSymbol.ucFirst(), 'HELlo£$');
   });
 });
