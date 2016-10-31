@@ -4,7 +4,7 @@
   "description": "This is an implementation of extended functions of a string class",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul cover _mocha -- -R spec"
+    "test": "./node_modules/.bin/istanbul cover _mocha -- -R spec  && cat ./*/**/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [
     "string",
