@@ -4,7 +4,7 @@
   "description": "This is an implementation of extended functions of a string class",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/istanbul cover _mocha -- -R spec"
   },
   "keywords": [
     "string",
@@ -14,9 +14,11 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.14",
     "eslint": "^3.9.0",
     "eslint-plugin-import": "^1.16.0",
     "gulp": "^3.9.1",
+    "istanbul": "^0.4.5",
     "mocha": "^3.1.2"
   },
   "devDependencies": {
