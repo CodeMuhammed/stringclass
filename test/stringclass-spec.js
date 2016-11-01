@@ -4,11 +4,14 @@ const assert = require('chai').assert;
 //
 const testData = {
   empty: '',
+  space: ' ',
   numbers: '12345',
   alphaNumeric: '123aBc',
   alpha: 'abCDef',
   stringWithSpace: ' heLL o ',
   stringWithSymbol: 'hELlo£$',
+  question: 'hello ?',
+  sentence: ' 123 Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand ',
 };
 
 // Switch to TDD lingo.
@@ -83,5 +86,51 @@ suite('toLower', () => {
   });
   test('Alphabets with symbols', () => {
     assert.equal(testData.stringWithSymbol.toLower(), 'hello£$');
+  });
+});
+
+//
+suite('ucFirst', () => {
+  test('An empty string', () => {
+    assert.equal(testData.empty.ucFirst(), '');
+  });
+  test('numbers', () => {
+    assert.equal(testData.numbers.ucFirst(), '12345');
+  });
+  test('Alpha-numeric string', () => {
+    assert.equal(testData.alphaNumeric.ucFirst(), '123aBc');
+  });
+  test('Alphabets only string', () => {
+    assert.equal(testData.alpha.ucFirst(), 'AbCDef');
+  });
+  test('Alphabets with spaces', () => {
+    assert.equal(testData.stringWithSpace.ucFirst(), ' heLL o ');
+  });
+  test('Alphabets with symbols', () => {
+    assert.equal(testData.stringWithSymbol.ucFirst(), 'HELlo£$');
+  });
+});
+
+
+//
+suite('isQuestion', () => {
+  test('An empty string', () => {
+    assert.equal(testData.empty.isQuestion(), '');
+  });
+  test('question', () => {
+    assert.equal(testData.question.isQuestion(), true);
+  });
+});
+
+//
+suite('words', () => {
+  test('An empty string', () => {
+    assert.equal(testData.empty.words().length === 0, true);
+  });
+  test('A single space character', () => {
+    assert.equal(testData.space.words().length === 0, true);
+  });
+  test('a valid sentence with punctuations', () => {
+    assert.equal(Array.isArray(testData.sentence.words()), true);
   });
 });

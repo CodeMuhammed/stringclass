@@ -33,3 +33,36 @@ Object.defineProperty(String.prototype, 'toLower', {
   },
 });
 
+/**
+ * String.prototype.ucFirst
+ * This methods returns the string in question but changes the First Character to an Upper case
+ * @return {String}.
+ */
+Object.defineProperty(String.prototype, 'ucFirst', {
+  value() {
+    return this.toString().replace(/^\S/, char => char.toUpper());
+  },
+});
+
+/**
+ * String.prototype.isQuestion
+ * This methods return true if the string is a question (ending with a question mark).
+ * @return {boolean}.
+ */
+Object.defineProperty(String.prototype, 'isQuestion', {
+  value() {
+    return /\?$/.test(this.toString());
+  },
+});
+
+/**
+ * String.prototype.words
+ * This methods returns a list of the words in the string, as an Array.
+ * @return {Array}.
+ */
+Object.defineProperty(String.prototype, 'words', {
+  value() {
+    return !!this.toString() && this.toString() !== ' ' ?
+             this.toString().trim().split(/[^A-Za-z0-9]+/) : [];
+  },
+});
