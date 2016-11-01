@@ -4,6 +4,7 @@ const assert = require('chai').assert;
 //
 const testData = {
   empty: '',
+  space: ' ',
   numbers: '12345',
   alphaNumeric: '123aBc',
   alpha: 'abCDef',
@@ -125,6 +126,9 @@ suite('isQuestion', () => {
 suite('words', () => {
   test('An empty string', () => {
     assert.equal(testData.empty.words(), []);
+  });
+  test('A single space character', () => {
+    assert.equal(testData.space.words(), []);
   });
   test('a valid sentence with punctuations', () => {
     assert.equal(!!testData.sentence.words()[0], true);
