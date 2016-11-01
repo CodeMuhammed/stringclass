@@ -11,7 +11,7 @@ const testData = {
   stringWithSpace: ' heLL o ',
   stringWithSymbol: 'hELlo£$',
   question: 'hello ?',
-  words: ' 123 Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand ',
+  sentence: ' 123 Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand ',
 };
 
 // Switch to TDD lingo.
@@ -125,12 +125,12 @@ suite('isQuestion', () => {
 //
 suite('words', () => {
   test('An empty string', () => {
-    assert.equal(testData.empty.words(), []);
+    assert.equal(testData.empty.words().length === 0, true);
   });
   test('A single space character', () => {
-    assert.equal(testData.space.words(), []);
+    assert.equal(testData.space.words().length === 0, true);
   });
   test('a valid sentence with punctuations', () => {
-    assert.equal(!!testData.sentence.words()[0], true);
+    assert.equal(Array.isArray(testData.sentence.words()), true);
   });
 });

@@ -54,3 +54,15 @@ Object.defineProperty(String.prototype, 'isQuestion', {
     return /\?$/.test(this.toString());
   },
 });
+
+/**
+ * String.prototype.words
+ * This methods returns a list of the words in the string, as an Array.
+ * @return {Array}.
+ */
+Object.defineProperty(String.prototype, 'words', {
+  value() {
+    return !!this.toString() && this.toString() !== ' ' ?
+             this.toString().trim().split(/[^A-Za-z0-9]+/) : [];
+  },
+});
