@@ -65,3 +65,14 @@ Object.defineProperty(String.prototype, 'words', {
     return !!this.toString() && this.toString() !== ' ' ? this.toString().match(/\w+/g) : [];
   },
 });
+
+/**
+ * String.prototype.wordCount
+ * This returns the number of words in the string.
+ * @return {number}.
+ */
+Object.defineProperty(String.prototype, 'wordCount', {
+  value() {
+    return !!this.toString() && this.toString() !== ' ' ? this.toString().words().length : 0;
+  },
+});
