@@ -62,7 +62,6 @@ Object.defineProperty(String.prototype, 'isQuestion', {
  */
 Object.defineProperty(String.prototype, 'words', {
   value() {
-    return !!this.toString() && this.toString() !== ' ' ?
-             this.toString().trim().split(/[^A-Za-z0-9]+/) : [];
+    return !!this.toString() && this.toString() !== ' ' ? this.toString().match(/\w+/g) : [];
   },
 });

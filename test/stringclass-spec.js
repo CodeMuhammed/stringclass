@@ -25,22 +25,22 @@ require('../api/stringclass');
 //
 suite('hasVowels', () => {
   test('An empty string', () => {
-    assert.equal(testData.empty.hasVowels(), false);
+    assert.isNotTrue(testData.empty.hasVowels());
   });
   test('numbers', () => {
-    assert.equal(testData.numbers.hasVowels(), false);
+    assert.isNotTrue(testData.numbers.hasVowels());
   });
   test('Alpha-numeric string', () => {
-    assert.equal(testData.alphaNumeric.hasVowels(), true);
+    assert.isTrue(testData.alphaNumeric.hasVowels());
   });
   test('Alphabets only string', () => {
-    assert.equal(testData.alpha.hasVowels(), true);
+    assert.isTrue(testData.alpha.hasVowels());
   });
   test('Alphabets with spaces', () => {
-    assert.equal(testData.stringWithSpace.hasVowels(), true);
+    assert.isTrue(testData.stringWithSpace.hasVowels());
   });
   test('Alphabets with symbols', () => {
-    assert.equal(testData.stringWithSymbol.hasVowels(), true);
+    assert.isTrue(testData.stringWithSymbol.hasVowels());
   });
 });
 
@@ -118,19 +118,29 @@ suite('isQuestion', () => {
     assert.equal(testData.empty.isQuestion(), '');
   });
   test('question', () => {
-    assert.equal(testData.question.isQuestion(), true);
+    assert.isTrue(testData.question.isQuestion());
   });
 });
 
 //
 suite('words', () => {
   test('An empty string', () => {
-    assert.equal(testData.empty.words().length === 0, true);
+    assert.isTrue(testData.empty.words().length === 0);
   });
   test('A single space character', () => {
-    assert.equal(testData.space.words().length === 0, true);
+    assert.isTrue(testData.space.words().length === 0);
   });
   test('a valid sentence with punctuations', () => {
-    assert.equal(Array.isArray(testData.sentence.words()), true);
+    assert.isTrue(Array.isArray(testData.sentence.words()));
+  });
+});
+
+//
+suite('wordCount', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.wordCount() === 0);
+  });
+  test('a valid sentence with punctuations', () => {
+    assert.isTrue(testData.sentence.wordCount() === testData.sentence.words().length);
   });
 });
