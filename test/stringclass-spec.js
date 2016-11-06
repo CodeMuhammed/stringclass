@@ -200,3 +200,19 @@ suite('alternatingCase', () => {
     assert.isTrue('Onomatopoeia'.alternatingCase() === 'oNoMaToPoEiA');
   });
 });
+
+//
+suite('getMiddle', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.getMiddle() === '');
+  });
+  test('A space character', () => {
+    assert.isTrue(testData.space.getMiddle() === ' ');
+  });
+  test('string', () => {
+    assert.isTrue('read'.getMiddle() === 'ea');
+  });
+  test('string', () => {
+    assert.isTrue('reads'.getMiddle() === 'a');
+  });
+});
