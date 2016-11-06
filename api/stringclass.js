@@ -62,7 +62,61 @@ Object.defineProperty(String.prototype, 'isQuestion', {
  */
 Object.defineProperty(String.prototype, 'words', {
   value() {
-    return !!this.toString() && this.toString() !== ' ' ?
-             this.toString().trim().split(/[^A-Za-z0-9]+/) : [];
+    return !!this.toString() && this.toString() !== ' ' ? this.toString().match(/\w+/g) : [];
   },
 });
+
+/**
+ * String.prototype.wordCount
+ * This returns the number of words in the string.
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'wordCount', {
+  value() {
+    return !!this.toString() && this.toString() !== ' ' ? this.toString().words().length : 0;
+  },
+});
+
+/**
+ * String.prototype.toCurrency
+ * This returns a currency representation of the String
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'toCurrency', {
+  value() {
+    const str = this.toString();
+    return !!str && !(str === ' ')
+           && (/^-?\d*[.]?\d+$/.test(str))
+           ? str.split(/(?=(?:\d{3})+(?:\.|$))/g).join(',')
+           : 'Invalid number';
+  },
+});
+
+/**
+ * String.prototype.fromCurrency
+ * This returns a number representation of the Currency
+ * @return {number}.
+ */
+Object.defineProperty(String.prototype, 'fromCurrency', {
+  value() {
+    const str = this.toString();
+    return !!str && !(str === ' ')
+           && (/^[1-9]\d*(((,\d{3}){1})?(\.\d{0,2})?)$/.test(str))
+           ? parseFloat(str.replace(/[,]/g, ''))
+           : 'Invalid currency';
+  },
+});
+
+/**
+ * String.prototype.inverseCase
+ * This returns each letter in the string as an inverse of its current case
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'inverseCase', {
+  value() {
+    const str = this.toString();
+    return str.replace(/[a-zA-Z]/g, c => (/[A-Z]/g.test(c) ? c.toLower() : c.toUpper()));
+  },
+});
+
+
