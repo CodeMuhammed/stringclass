@@ -69,10 +69,26 @@ Object.defineProperty(String.prototype, 'words', {
 /**
  * String.prototype.wordCount
  * This returns the number of words in the string.
- * @return {number}.
+ * @return {string}.
  */
 Object.defineProperty(String.prototype, 'wordCount', {
   value() {
     return !!this.toString() && this.toString() !== ' ' ? this.toString().words().length : 0;
   },
 });
+
+/**
+ * String.prototype.toCurrency
+ * This returns a currency representation of the String
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'toCurrency', {
+  value() {
+    const str = this.toString();
+    return !!str && !(str === ' ')
+           && (/^-?\d*[.]?\d+$/.test(str))
+           ? str.split(/(?=(?:\d{3})+(?:\.|$))/g).join(',')
+           : 'Invalid number';
+  },
+});
+

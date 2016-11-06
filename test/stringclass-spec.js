@@ -151,9 +151,22 @@ suite('toCurrency', () => {
     assert.isTrue(testData.empty.toCurrency() === 'Invalid number');
   });
   test('numbers', () => {
-    assert.isTrue('123000.00'.toCurrency() === '123,000.00');
+    assert.isTrue('11111.11'.toCurrency() === '11,111.11');
   });
   test('Alpha-numeric string', () => {
-    assert.equal(testData.alphaNumeric.toCurrency() === 'Invalid number');
+    assert.isTrue(testData.alphaNumeric.toCurrency() === 'Invalid number');
+  });
+});
+
+//
+suite('fromCurrency', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.fromCurrency() === 'Invalid string');
+  });
+  test('numbers', () => {
+    assert.isTrue('11,111.11'.fromCurrency() === '11111.11');
+  });
+  test('Alpha-numeric string', () => {
+    assert.isTrue(testData.alphaNumeric.fromCurrency() === 'Invalid string');
   });
 });
