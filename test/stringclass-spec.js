@@ -186,3 +186,17 @@ suite('inverseCase', () => {
     assert.isTrue('mad HOuse'.inverseCase() === 'MAD hoUSE');
   });
 });
+
+
+//
+suite('alternatingCase', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.alternatingCase() === '');
+  });
+  test('numbers', () => {
+    assert.isTrue(testData.numbers.alternatingCase() === testData.numbers);
+  });
+  test('string', () => {
+    assert.isTrue('Onomatopoeia'.alternatingCase() === 'oNoMaToPoEiA');
+  });
+});

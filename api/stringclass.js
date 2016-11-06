@@ -119,4 +119,16 @@ Object.defineProperty(String.prototype, 'inverseCase', {
   },
 });
 
+/**
+ * String.prototype.alternatingCase
+ * This returns each letter in the string as an inverse of its current case
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'alternatingCase', {
+  value() {
+    const str = this.toString();
+    return str.replace(/[a-zA-Z]/g, (c, i) => (i % 2 === 0 ? c.toLower() : c.toUpper()));
+  },
+});
+
 
