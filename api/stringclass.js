@@ -95,7 +95,7 @@ Object.defineProperty(String.prototype, 'toCurrency', {
 /**
  * String.prototype.fromCurrency
  * This returns a number representation of the Currency
- * @return {string}.
+ * @return {number}.
  */
 Object.defineProperty(String.prototype, 'fromCurrency', {
   value() {

@@ -170,3 +170,19 @@ suite('fromCurrency', () => {
     assert.isTrue(testData.alphaNumeric.fromCurrency() === 'Invalid currency');
   });
 });
+
+//
+suite('inverseCase', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.inverseCase() === '');
+  });
+  test('numbers', () => {
+    assert.isTrue(testData.numbers.inverseCase() === testData.numbers);
+  });
+  test('Alpha-numeric string', () => {
+    assert.isTrue('123abc'.inverseCase() === '123ABC');
+  });
+  test('string', () => {
+    assert.isTrue('mad HOuse'.inverseCase() === 'MAD hoUSE');
+  });
+});
