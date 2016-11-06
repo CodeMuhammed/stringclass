@@ -92,3 +92,19 @@ Object.defineProperty(String.prototype, 'toCurrency', {
   },
 });
 
+/**
+ * String.prototype.fromCurrency
+ * This returns a number representation of the Currency
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'fromCurrency', {
+  value() {
+    const str = this.toString();
+    return !!str && !(str === ' ')
+           && (/^[1-9]\d*(((,\d{3}){1})?(\.\d{0,2})?)$/.test(str))
+           ? parseFloat(str.replace(/[,]/g, ''))
+           : 'Invalid currency';
+  },
+});
+
+

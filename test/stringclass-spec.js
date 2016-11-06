@@ -161,12 +161,12 @@ suite('toCurrency', () => {
 //
 suite('fromCurrency', () => {
   test('An empty string', () => {
-    assert.isTrue(testData.empty.fromCurrency() === 'Invalid string');
+    assert.isTrue(testData.empty.fromCurrency() === 'Invalid currency');
   });
   test('numbers', () => {
-    assert.isTrue('11,111.11'.fromCurrency() === '11111.11');
+    assert.isTrue('11,111.11'.fromCurrency() === 11111.11);
   });
   test('Alpha-numeric string', () => {
-    assert.isTrue(testData.alphaNumeric.fromCurrency() === 'Invalid string');
+    assert.isTrue(testData.alphaNumeric.fromCurrency() === 'Invalid currency');
   });
 });
