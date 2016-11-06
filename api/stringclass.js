@@ -107,4 +107,16 @@ Object.defineProperty(String.prototype, 'fromCurrency', {
   },
 });
 
+/**
+ * String.prototype.inverseCase
+ * This returns each letter in the string as an inverse of its current case
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'inverseCase', {
+  value() {
+    const str = this.toString();
+    return str.replace(/[a-zA-Z]/g, c => (/[A-Z]/g.test(c) ? c.toLower() : c.toUpper()));
+  },
+});
+
 
