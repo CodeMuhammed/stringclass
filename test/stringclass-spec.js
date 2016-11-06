@@ -144,3 +144,16 @@ suite('wordCount', () => {
     assert.isTrue(testData.sentence.wordCount() === testData.sentence.words().length);
   });
 });
+
+//
+suite('toCurrency', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.toCurrency() === 'Invalid number');
+  });
+  test('numbers', () => {
+    assert.isTrue('123000.00'.toCurrency() === '123,000.00');
+  });
+  test('Alpha-numeric string', () => {
+    assert.equal(testData.alphaNumeric.toCurrency() === 'Invalid number');
+  });
+});
