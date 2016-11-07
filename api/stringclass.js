@@ -85,8 +85,7 @@ Object.defineProperty(String.prototype, 'wordCount', {
 Object.defineProperty(String.prototype, 'toCurrency', {
   value() {
     const str = this.toString();
-    return !!str && !(str === ' ')
-           && (/^-?\d*[.]?\d+$/.test(str))
+    return !!str && !(str === ' ') && (/^-?\d*[.]?\d+$/.test(str))
            ? str.split(/(?=(?:\d{3})+(?:\.|$))/g).join(',')
            : 'Invalid number';
   },
@@ -100,8 +99,7 @@ Object.defineProperty(String.prototype, 'toCurrency', {
 Object.defineProperty(String.prototype, 'fromCurrency', {
   value() {
     const str = this.toString();
-    return !!str && !(str === ' ')
-           && (/^[1-9]\d*(((,\d{3}){1})?(\.\d{0,2})?)$/.test(str))
+    return !!str && !(str === ' ') && (/^[1-9]\d*(((,\d{3}){1})?(\.\d{0,2})?)$/.test(str))
            ? parseFloat(str.replace(/[,]/g, ''))
            : 'Invalid currency';
   },
@@ -119,4 +117,47 @@ Object.defineProperty(String.prototype, 'inverseCase', {
   },
 });
 
+/**
+ * String.prototype.alternatingCase
+ * This returns each letter in the string as an inverse of its current case
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'alternatingCase', {
+  value() {
+    const str = this.toString();
+    return str.replace(/[a-zA-Z]/g, (c, i) => (i % 2 === 0 ? c.toLower() : c.toUpper()));
+  },
+});
 
+
+/**
+ * String.prototype.getMiddle
+ * This returns the character(s) in the middle of the string
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'getMiddle', {
+  value() {
+    const str = this.toString();
+    const index = Math.floor(str.length / 2);
+    return str.length % 2 === 0 ? str.substr(index - 1, 2) : str[index];
+  },
+});
+
+
+/**
+ * String.prototype.numberWords
+ * This returns the numbers in words e.g 325 should return three two five
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'numberWords', {
+  value() {
+    const str = this.toString();
+    const wordMap = [
+      'zero', 'one', 'two', 'three', 'four',
+      'five', 'six', 'seven', 'eight', 'nine',
+    ];
+    return !!str && !(str === ' ') && (/^\d+$/.test(str))
+           ? str.replace(/\d/g, char => `${wordMap[char]} `).trim()
+           : 'Invalid number string';
+  },
+});

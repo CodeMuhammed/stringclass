@@ -186,3 +186,47 @@ suite('inverseCase', () => {
     assert.isTrue('mad HOuse'.inverseCase() === 'MAD hoUSE');
   });
 });
+
+
+//
+suite('alternatingCase', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.alternatingCase() === '');
+  });
+  test('numbers', () => {
+    assert.isTrue(testData.numbers.alternatingCase() === testData.numbers);
+  });
+  test('string', () => {
+    assert.isTrue('Onomatopoeia'.alternatingCase() === 'oNoMaToPoEiA');
+  });
+});
+
+//
+suite('getMiddle', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.getMiddle() === '');
+  });
+  test('A space character', () => {
+    assert.isTrue(testData.space.getMiddle() === ' ');
+  });
+  test('string', () => {
+    assert.isTrue('read'.getMiddle() === 'ea');
+  });
+  test('string', () => {
+    assert.isTrue('reads'.getMiddle() === 'a');
+  });
+});
+
+
+//
+suite('numberWords', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.numberWords() === 'Invalid number string');
+  });
+  test('A space character', () => {
+    assert.isTrue(testData.space.numberWords() === 'Invalid number string');
+  });
+  test('number', () => {
+    assert.isTrue('325'.numberWords() === 'three two five');
+  });
+});
