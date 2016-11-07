@@ -85,8 +85,7 @@ Object.defineProperty(String.prototype, 'wordCount', {
 Object.defineProperty(String.prototype, 'toCurrency', {
   value() {
     const str = this.toString();
-    return !!str && !(str === ' ')
-           && (/^-?\d*[.]?\d+$/.test(str))
+    return !!str && !(str === ' ') && (/^-?\d*[.]?\d+$/.test(str))
            ? str.split(/(?=(?:\d{3})+(?:\.|$))/g).join(',')
            : 'Invalid number';
   },
@@ -100,8 +99,7 @@ Object.defineProperty(String.prototype, 'toCurrency', {
 Object.defineProperty(String.prototype, 'fromCurrency', {
   value() {
     const str = this.toString();
-    return !!str && !(str === ' ')
-           && (/^[1-9]\d*(((,\d{3}){1})?(\.\d{0,2})?)$/.test(str))
+    return !!str && !(str === ' ') && (/^[1-9]\d*(((,\d{3}){1})?(\.\d{0,2})?)$/.test(str))
            ? parseFloat(str.replace(/[,]/g, ''))
            : 'Invalid currency';
   },
@@ -145,3 +143,21 @@ Object.defineProperty(String.prototype, 'getMiddle', {
   },
 });
 
+
+/**
+ * String.prototype.numberWords
+ * This returns the numbers in words e.g 325 should return three two five
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'numberWords', {
+  value() {
+    const str = this.toString();
+    const wordMap = [
+      'zero', 'one', 'two', 'three', 'four',
+      'five', 'six', 'seven', 'eight', 'nine',
+    ];
+    return !!str && !(str === ' ') && (/^\d+$/.test(str))
+           ? str.replace(/\d/g, char => `${wordMap[char]} `).trim()
+           : 'Invalid number string';
+  },
+});
