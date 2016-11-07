@@ -132,3 +132,16 @@ Object.defineProperty(String.prototype, 'alternatingCase', {
 });
 
 
+/**
+ * String.prototype.getMiddle
+ * This returns the character(s) in the middle of the string
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'getMiddle', {
+  value() {
+    const str = this.toString();
+    const index = Math.floor(str.length / 2);
+    return str.length % 2 === 0 ? str.substr(index - 1, 2) : str[index];
+  },
+});
+
