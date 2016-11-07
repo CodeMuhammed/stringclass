@@ -6,6 +6,8 @@ const testData = {
   empty: '',
   space: ' ',
   numbers: '12345',
+  digit: '3',
+  alphabet: 'a',
   alphaNumeric: '123aBc',
   alpha: 'abCDef',
   stringWithSpace: ' heLL o ',
@@ -228,5 +230,21 @@ suite('numberWords', () => {
   });
   test('number', () => {
     assert.isTrue('325'.numberWords() === 'three two five');
+  });
+});
+
+//
+suite('isDigit', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.isDigit() === 'Invalid digit');
+  });
+  test('A space character', () => {
+    assert.isTrue(testData.space.isDigit() === 'Invalid digit');
+  });
+  test('digit', () => {
+    assert.isTrue(testData.digit.isDigit());
+  });
+  test('alphabet', () => {
+    assert.isNotTrue(testData.alphabet.isDigit());
   });
 });
