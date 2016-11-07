@@ -165,7 +165,7 @@ Object.defineProperty(String.prototype, 'numberWords', {
 /**
  * String.prototype.numberWords
  * This returns the numbers in words e.g 325 should return three two five
- * @return {string}.
+ * @return {boolean}.
  */
 Object.defineProperty(String.prototype, 'isDigit', {
   value() {
