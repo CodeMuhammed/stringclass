@@ -248,3 +248,16 @@ suite('isDigit', () => {
     assert.isNotTrue(testData.alphabet.isDigit());
   });
 });
+
+//
+suite('doubleCheck', () => {
+  test('An empty string', () => {
+    assert.isNotTrue(testData.empty.doubleCheck());
+  });
+  test('A space character', () => {
+    assert.isNotTrue(testData.space.doubleCheck());
+  });
+  test('string that contains double', () => {
+    assert.isTrue('aa'.doubleCheck());
+  });
+});

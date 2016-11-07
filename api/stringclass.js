@@ -163,13 +163,25 @@ Object.defineProperty(String.prototype, 'numberWords', {
 });
 
 /**
- * String.prototype.numberWords
+ * String.prototype.isDigit
  * This returns the numbers in words e.g 325 should return three two five
- * @return {string}.
+ * @return {boolean}.
  */
 Object.defineProperty(String.prototype, 'isDigit', {
   value() {
     const str = this.toString();
     return !!str && !(str === ' ') && str.length === 1 ? /\d/g.test(str) : 'Invalid digit';
+  },
+});
+
+/**
+ * String.prototype.doubleCheck
+ * This returns true if a string contains double characters(including whitespace character)
+ * @return {boolean}.
+ */
+Object.defineProperty(String.prototype, 'doubleCheck', {
+  value() {
+    // @TODO
+    return /\S*(.)\1\S*/.test(this.toString());
   },
 });
