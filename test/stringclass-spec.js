@@ -216,3 +216,17 @@ suite('getMiddle', () => {
     assert.isTrue('reads'.getMiddle() === 'a');
   });
 });
+
+
+//
+suite('numberWords', () => {
+  test('An empty string', () => {
+    assert.isTrue(testData.empty.getMiddle() === 'Invalid number string');
+  });
+  test('A space character', () => {
+    assert.isTrue(testData.space.getMiddle() === 'Invalid number string');
+  });
+  test('number', () => {
+    assert.isTrue('325'.numberWords() === 'three two five');
+  });
+});
