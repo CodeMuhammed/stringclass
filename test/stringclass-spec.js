@@ -7,6 +7,7 @@ const testData = {
   space: ' ',
   numbers: '12345',
   digit: '3',
+  alphabet: 'a',
   alphaNumeric: '123aBc',
   alpha: 'abCDef',
   stringWithSpace: ' heLL o ',
@@ -242,5 +243,8 @@ suite('isDigit', () => {
   });
   test('digit', () => {
     assert.isTrue(testData.digit.isDigit());
+  });
+  test('alphabet', () => {
+    assert.isNotTrue(testData.alphabet.isDigit());
   });
 });

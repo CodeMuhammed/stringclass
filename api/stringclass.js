@@ -161,3 +161,15 @@ Object.defineProperty(String.prototype, 'numberWords', {
            : 'Invalid number string';
   },
 });
+
+/**
+ * String.prototype.numberWords
+ * This returns the numbers in words e.g 325 should return three two five
+ * @return {string}.
+ */
+Object.defineProperty(String.prototype, 'isDigit', {
+  value() {
+    const str = this.toString();
+    return !!str && !(str === ' ') && str.length === 1 ? /\d/g.test(str) : 'Invalid digit';
+  },
+});
