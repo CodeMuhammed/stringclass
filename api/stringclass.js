@@ -18,7 +18,8 @@ Object.defineProperty(String.prototype, 'hasVowels', {
  */
 Object.defineProperty(String.prototype, 'toUpper', {
   value() {
-    return this.toString().replace(/[a-z]/g, c => String.fromCharCode(c.charCodeAt(0) - 32));
+    return this.toString().replace(/[a-z]/g, char =>
+           String.fromCharCode(char.charCodeAt(0) - 32));
   },
 });
 
@@ -29,7 +30,8 @@ Object.defineProperty(String.prototype, 'toUpper', {
  */
 Object.defineProperty(String.prototype, 'toLower', {
   value() {
-    return this.toString().replace(/[A-Z]/g, c => String.fromCharCode(c.charCodeAt(0) + 32));
+    return this.toString().replace(/[A-Z]/g, char =>
+           String.fromCharCode(char.charCodeAt(0) + 32));
   },
 });
 
@@ -86,7 +88,7 @@ Object.defineProperty(String.prototype, 'toCurrency', {
   value() {
     const str = this.toString();
     return !!str && !(str === ' ') && (/^-?\d*[.]?\d+$/.test(str))
-           ? str.split(/(?=(?:\d{3})+(?:\.|$))/g).join(',')
+           ? str.replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
            : 'Invalid number';
   },
 });
@@ -99,8 +101,8 @@ Object.defineProperty(String.prototype, 'toCurrency', {
 Object.defineProperty(String.prototype, 'fromCurrency', {
   value() {
     const str = this.toString();
-    return !!str && !(str === ' ') && (/^[1-9]\d*(((,\d{3}){1})?(\.\d{0,2})?)$/.test(str))
-           ? parseFloat(str.replace(/[,]/g, ''))
+    return !!str && !(str === ' ') && str.match(/(\d+[.,]?)+/g)[0] === str
+           ? parseFloat(str.replace(/,/g, ''))
            : 'Invalid currency';
   },
 });
@@ -113,7 +115,8 @@ Object.defineProperty(String.prototype, 'fromCurrency', {
 Object.defineProperty(String.prototype, 'inverseCase', {
   value() {
     const str = this.toString();
-    return str.replace(/[a-zA-Z]/g, c => (/[A-Z]/g.test(c) ? c.toLower() : c.toUpper()));
+    return str.replace(/[a-zA-Z]/g, char =>
+           (/[A-Z]/g.test(char) ? char.toLower() : char.toUpper()));
   },
 });
 
@@ -125,7 +128,8 @@ Object.defineProperty(String.prototype, 'inverseCase', {
 Object.defineProperty(String.prototype, 'alternatingCase', {
   value() {
     const str = this.toString();
-    return str.replace(/[a-zA-Z]/g, (c, i) => (i % 2 === 0 ? c.toLower() : c.toUpper()));
+    return str.replace(/[a-zA-Z]/g, (char, index) =>
+           (index % 2 === 0 ? char.toLower() : char.toUpper()));
   },
 });
 
@@ -182,6 +186,6 @@ Object.defineProperty(String.prototype, 'isDigit', {
 Object.defineProperty(String.prototype, 'doubleCheck', {
   value() {
     // @TODO
-    return /\S*(.)\1\S*/.test(this.toString());
+    return /(\s|\S)\1/g.test(this.toString());
   },
 });

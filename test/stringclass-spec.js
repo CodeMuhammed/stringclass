@@ -1,7 +1,10 @@
 // Imports chai dependencies here
 const assert = require('chai').assert;
 
-//
+// Imports source code for string class here.
+require('../api/stringclass');
+
+// Test data.
 const testData = {
   empty: '',
   space: ' ',
@@ -16,248 +19,182 @@ const testData = {
   sentence: ' 123 Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand ',
 };
 
-// Switch to TDD lingo.
-const suite = describe;
-const test = it;
-
-// Imports source code for string class here.
-require('../api/stringclass');
-
-
-//
-suite('hasVowels', () => {
-  test('An empty string', () => {
+describe('hasVowels', () => {
+  it('Returns false for an empty string', () => {
     assert.isNotTrue(testData.empty.hasVowels());
   });
-  test('numbers', () => {
+  it('Returns false for numbers', () => {
     assert.isNotTrue(testData.numbers.hasVowels());
   });
-  test('Alpha-numeric string', () => {
+  it('Should return true when the string has a vowel', () => {
     assert.isTrue(testData.alphaNumeric.hasVowels());
   });
-  test('Alphabets only string', () => {
-    assert.isTrue(testData.alpha.hasVowels());
-  });
-  test('Alphabets with spaces', () => {
-    assert.isTrue(testData.stringWithSpace.hasVowels());
-  });
-  test('Alphabets with symbols', () => {
-    assert.isTrue(testData.stringWithSymbol.hasVowels());
-  });
 });
 
-
-//
-suite('toUpper', () => {
-  test('An empty string', () => {
+describe('toUpper', () => {
+  it('Should return an empty string', () => {
     assert.equal(testData.empty.toUpper(), '');
   });
-  test('numbers', () => {
+  it('Should return the number unchanged', () => {
     assert.equal(testData.numbers.toUpper(), '12345');
   });
-  test('Alpha-numeric string', () => {
+  it('Should convert the alphabets to uppercase', () => {
     assert.equal(testData.alphaNumeric.toUpper(), '123ABC');
   });
-  test('Alphabets only string', () => {
-    assert.equal(testData.alpha.toUpper(), 'ABCDEF');
-  });
-  test('Alphabets with spaces', () => {
-    assert.equal(testData.stringWithSpace.toUpper(), ' HELL O ');
-  });
-  test('Alphabets with symbols', () => {
-    assert.equal(testData.stringWithSymbol.toUpper(), 'HELLO£$');
-  });
 });
 
-//
-suite('toLower', () => {
-  test('An empty string', () => {
+describe('toLower', () => {
+  it('Should return a empty string', () => {
     assert.equal(testData.empty.toLower(), '');
   });
-  test('numbers', () => {
+  it('Should return numbers', () => {
     assert.equal(testData.numbers.toLower(), '12345');
   });
-  test('Alpha-numeric string', () => {
+  it('Should convert the Alphabets in the string to lower case', () => {
     assert.equal(testData.alphaNumeric.toLower(), '123abc');
   });
-  test('Alphabets only string', () => {
-    assert.equal(testData.alpha.toLower(), 'abcdef');
-  });
-  test('Alphabets with spaces', () => {
-    assert.equal(testData.stringWithSpace.toLower(), ' hell o ');
-  });
-  test('Alphabets with symbols', () => {
-    assert.equal(testData.stringWithSymbol.toLower(), 'hello£$');
-  });
 });
 
-//
-suite('ucFirst', () => {
-  test('An empty string', () => {
+describe('ucFirst', () => {
+  it('Should return an empty string', () => {
     assert.equal(testData.empty.ucFirst(), '');
   });
-  test('numbers', () => {
+  it('Should return the numbers unchanged', () => {
     assert.equal(testData.numbers.ucFirst(), '12345');
   });
-  test('Alpha-numeric string', () => {
-    assert.equal(testData.alphaNumeric.ucFirst(), '123aBc');
-  });
-  test('Alphabets only string', () => {
+  it('Transforms the first character to uppercase', () => {
     assert.equal(testData.alpha.ucFirst(), 'AbCDef');
-  });
-  test('Alphabets with spaces', () => {
-    assert.equal(testData.stringWithSpace.ucFirst(), ' heLL o ');
-  });
-  test('Alphabets with symbols', () => {
-    assert.equal(testData.stringWithSymbol.ucFirst(), 'HELlo£$');
   });
 });
 
-
-//
-suite('isQuestion', () => {
-  test('An empty string', () => {
+describe('isQuestion', () => {
+  it('Returns an empty string', () => {
     assert.equal(testData.empty.isQuestion(), '');
   });
-  test('question', () => {
+  it('Should return true if string is a question', () => {
     assert.isTrue(testData.question.isQuestion());
   });
 });
 
-//
-suite('words', () => {
-  test('An empty string', () => {
+describe('words', () => {
+  it('Returns an array of length 0', () => {
     assert.isTrue(testData.empty.words().length === 0);
   });
-  test('A single space character', () => {
+  it('Returns an array of length 0', () => {
     assert.isTrue(testData.space.words().length === 0);
   });
-  test('a valid sentence with punctuations', () => {
+  it('Returns an array of valid tokens in a string', () => {
     assert.isTrue(Array.isArray(testData.sentence.words()));
   });
 });
 
-//
-suite('wordCount', () => {
-  test('An empty string', () => {
+describe('wordCount', () => {
+  it('Returns 0 for an empty string', () => {
     assert.isTrue(testData.empty.wordCount() === 0);
   });
-  test('a valid sentence with punctuations', () => {
+  it('Returns the length of valid tokens in a string', () => {
     assert.isTrue(testData.sentence.wordCount() === testData.sentence.words().length);
   });
 });
 
-//
-suite('toCurrency', () => {
-  test('An empty string', () => {
+describe('toCurrency', () => {
+  it('Returns Invalid number', () => {
     assert.isTrue(testData.empty.toCurrency() === 'Invalid number');
   });
-  test('numbers', () => {
-    assert.isTrue('11111.11'.toCurrency() === '11,111.11');
-  });
-  test('Alpha-numeric string', () => {
-    assert.isTrue(testData.alphaNumeric.toCurrency() === 'Invalid number');
+  it('Returns currency rep of string', () => {
+    assert.isTrue('11111.111'.toCurrency() === '11,111.111');
   });
 });
 
-//
-suite('fromCurrency', () => {
-  test('An empty string', () => {
+describe('fromCurrency', () => {
+  it('Returns an empty string', () => {
     assert.isTrue(testData.empty.fromCurrency() === 'Invalid currency');
   });
-  test('numbers', () => {
+  it('Returns the number representation of the curency', () => {
     assert.isTrue('11,111.11'.fromCurrency() === 11111.11);
   });
-  test('Alpha-numeric string', () => {
+  it('Should return invalid', () => {
     assert.isTrue(testData.alphaNumeric.fromCurrency() === 'Invalid currency');
   });
 });
 
-//
-suite('inverseCase', () => {
-  test('An empty string', () => {
+describe('inverseCase', () => {
+  it('Should return an empty string', () => {
     assert.isTrue(testData.empty.inverseCase() === '');
   });
-  test('numbers', () => {
+  it('Should return the same number', () => {
     assert.isTrue(testData.numbers.inverseCase() === testData.numbers);
   });
-  test('Alpha-numeric string', () => {
+  it('Should convert the alphabet to inverse case', () => {
     assert.isTrue('123abc'.inverseCase() === '123ABC');
   });
-  test('string', () => {
+  it('Should return an inverse case of the string', () => {
     assert.isTrue('mad HOuse'.inverseCase() === 'MAD hoUSE');
   });
 });
 
-
-//
-suite('alternatingCase', () => {
-  test('An empty string', () => {
+describe('alternatingCase', () => {
+  it('Returns an empty string', () => {
     assert.isTrue(testData.empty.alternatingCase() === '');
   });
-  test('numbers', () => {
+  it('Should return the same number', () => {
     assert.isTrue(testData.numbers.alternatingCase() === testData.numbers);
   });
-  test('string', () => {
+  it('Should return an alternating cased version of the string', () => {
     assert.isTrue('Onomatopoeia'.alternatingCase() === 'oNoMaToPoEiA');
   });
 });
 
-//
-suite('getMiddle', () => {
-  test('An empty string', () => {
+describe('getMiddle', () => {
+  it('Returns empty string', () => {
     assert.isTrue(testData.empty.getMiddle() === '');
   });
-  test('A space character', () => {
+  it('Returns a space character', () => {
     assert.isTrue(testData.space.getMiddle() === ' ');
   });
-  test('string', () => {
+  it('Returns the middle two substring for an even length string', () => {
     assert.isTrue('read'.getMiddle() === 'ea');
   });
-  test('string', () => {
+  it('Returns the middle character for an odd length string', () => {
     assert.isTrue('reads'.getMiddle() === 'a');
   });
 });
 
-
-//
-suite('numberWords', () => {
-  test('An empty string', () => {
+describe('numberWords', () => {
+  it('Should return Invalid for an empty string', () => {
     assert.isTrue(testData.empty.numberWords() === 'Invalid number string');
   });
-  test('A space character', () => {
+  it('Should return Invalid for a space character', () => {
     assert.isTrue(testData.space.numberWords() === 'Invalid number string');
   });
-  test('number', () => {
+  it('Should return the string representation of the number', () => {
     assert.isTrue('325'.numberWords() === 'three two five');
   });
 });
 
-//
-suite('isDigit', () => {
-  test('An empty string', () => {
+describe('isDigit', () => {
+  it('Should return Invalid for an empty string', () => {
     assert.isTrue(testData.empty.isDigit() === 'Invalid digit');
   });
-  test('A space character', () => {
+  it('Should return Invalid for a space character', () => {
     assert.isTrue(testData.space.isDigit() === 'Invalid digit');
   });
-  test('digit', () => {
+  it('Returns true if string is a digit', () => {
     assert.isTrue(testData.digit.isDigit());
   });
-  test('alphabet', () => {
+  it('Should not be true if the string is an alphabet', () => {
     assert.isNotTrue(testData.alphabet.isDigit());
   });
 });
 
-//
-suite('doubleCheck', () => {
-  test('An empty string', () => {
+describe('doubleCheck', () => {
+  it('Returns false for an empty string', () => {
     assert.isNotTrue(testData.empty.doubleCheck());
   });
-  test('A space character', () => {
+  it('Returns false for a space character', () => {
     assert.isNotTrue(testData.space.doubleCheck());
   });
-  test('string that contains double', () => {
+  it('Returns true for strings that contains doubles', () => {
     assert.isTrue('aa'.doubleCheck());
   });
 });
