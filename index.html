@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>String Class</title>
+         
+         <!-- Angularjs source minified JavaScript -->
+         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+         <!--Custom string class code-->
+         <script src="api/stringclass.js"></script>
+         
+         <!--Custom angularjs code-->
+         <script>
+             angular.module('app', [])
+               .controller('appController', function($scope) {
+                   //
+                   $scope.methods = [
+                       'hasVowels','toUpper', 'toLower',
+                       'ucFirst', 'isQuestion', 'words',
+                       'wordCount', 'toCurrency', 'fromCurrency',
+                       'inverseCase', 'alternatingCase', 'getMiddle',
+                       'numberWords', 'isDigit', 'doubleCheck'
+                   ];
+
+                   //
+                   $scope.testStr = '';
+                   $scope.answer = 'none yet';
+                   $scope.selectedMethod = $scope.methods[0];
+
+                   //
+                   $scope.setAnswer = function() {
+                       if($scope.testStr[$scope.selectedMethod]) {
+                           $scope.answer = $scope.testStr[$scope.selectedMethod]();
+                       } else {
+                           $scope.answer='This method is has not been defined on the string prototype.';
+                       }
+                   }
+               });
+         </script>
+    </head>
+    <body ng-controller="appController">
+        <textarea placeholder="Enter test string here" cols="30" rows="10" style="margin-bottom:1em; padding:1em" ng-model="testStr"></textarea> <br>
+        <select ng-options="method as method for method in methods" ng-model="selectedMethod">Select method</select>
+        <button ng-click="setAnswer()">Test !</button>
+        <div style="margin-top:1em; border: 1px solid #ccc; height:10em; width:14.5%;padding:1em">
+            {{answer}}
+        </div>
+    </body>
+</html>

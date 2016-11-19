@@ -13,5 +13,10 @@ gulp.task('test', () => {
   });
 });
 
+// Serves the application.
+gulp.task('serve', () => {
+  // @TODO serve app with browser sync
+});
+
 // Watches for changes and reloads the app.
 gulp.watch(['api/**/*.js', 'test/**/*.js'], ['test']);
