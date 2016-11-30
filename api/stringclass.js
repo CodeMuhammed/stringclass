@@ -87,8 +87,8 @@ Object.defineProperty(String.prototype, 'wordCount', {
 Object.defineProperty(String.prototype, 'toCurrency', {
   value() {
     const str = this.toString();
-    return !!str && !(str === ' ') && (/^-?\d*[.]?\d+$/.test(str))
-           ? str.replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
+    return !!str && !(str === ' ') && (/^-?\d+[.]?\d+$/.test(str))
+           ? `${parseFloat(str).toFixed(2)}`.replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
            : 'Invalid number';
   },
 });
