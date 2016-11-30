@@ -102,7 +102,7 @@ describe('toCurrency', () => {
     assert.isTrue(testData.empty.toCurrency() === 'Invalid number');
   });
   it('Returns currency rep of string', () => {
-    assert.isTrue('11111.111'.toCurrency() === '11,111.111');
+    assert.isTrue('11111.111'.toCurrency() === '11,111.11');
   });
 });
 
